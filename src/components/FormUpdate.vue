@@ -1,5 +1,6 @@
 <template>
-<div class="form-add">
+<div class="form-add container">
+    <h2 class="my-4">Atualizar Produto</h2>
     <form autocomplete="off">
         <div class="mb-3">
             <label for="nameProduct" class="form-label">Nome do Produto:</label>
@@ -19,7 +20,7 @@
         </div>
         <div class="mb-3">
             <label for="descriptionProduct" class="form-label">Descrição:</label>
-            <input type="text" class="form-control" id="description" aria-describedby="descriptionProduct" required v-model="product.description" name="description">
+            <textarea type="text" class="form-control" id="description" aria-describedby="descriptionProduct" required v-model="product.description" name="description" rows="4" maxlength="240"></textarea>
         </div>
         <router-link class="btn btn-danger m-2" to="/admin">Voltar</router-link>
         <button type="submit" class="btn btn-primary" v-on:click="updateProduct()">
@@ -44,7 +45,7 @@ export default {
                 this.product = response.data;
             })
             .catch(error => {
-                alert(error)
+                console.log(error)
             })
     },
     methods: {
@@ -59,7 +60,7 @@ export default {
 
             API.put('products/update/' + this.$route.params.id, data)
                 .catch(error => {
-                    alert(error)
+                    console.log(error)
                 })
 
             this.$router.push('/admin')

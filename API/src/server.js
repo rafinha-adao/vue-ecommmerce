@@ -1,29 +1,32 @@
 const express = require("express");
 const db = require("./database/config");
 const mongoose = require("mongoose");
-const cors = require('cors');
+const cors = require("cors");
 
 const app = express();
 
-app.use(cors({
-  origin: '*'
-}));
+const PORT = process.env.PORT || 3000;
+
+app.use(
+  cors({
+    origin: "*",
+  })
+);
 
 class App {
   constructor() {
-
     this.database();
     this.middlewares();
     this.routes();
 
-    app.listen(8000, () =>
+    app.listen(PORT, () =>
       console.log(`
-      API rodando na porta 8000
+      API rodando na porta ${PORT}
                     
-      http://localhost:8000`)
+      http://localhost:${PORT}`)
     );
 
-    app.get('/', function (req, res) {
+    app.get("/", function (req, res) {
       res.send(`
       <!DOCTYPE html>
       <html lang="pt-br">
@@ -41,8 +44,8 @@ class App {
           </ul>
       </body>
       </html>
-      `)
-    })
+      `);
+    });
   }
 
   database() {
@@ -55,7 +58,6 @@ class App {
 
   routes() {
     app.use(require("./routes/productRoutes"));
-    app.use(require("./routes/clientRoutes"));
   }
 }
 

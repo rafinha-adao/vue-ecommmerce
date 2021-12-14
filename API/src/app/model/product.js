@@ -3,8 +3,7 @@ const mongoose = require("mongoose");
 const ProductSchema = new mongoose.Schema(
   {
     img: {  
-        name: ImageBitmap,
-        image: Buffer,
+        type: String,
         required: true
     },
     name: {

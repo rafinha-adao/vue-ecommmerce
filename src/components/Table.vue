@@ -24,32 +24,7 @@
                     <button type="button" class="btn btn-danger mx-1" v-on:click="deleteProduct(product._id)">
                         <i class="bi bi-trash"></i>
                     </button>
-                    <!--
-                            <button type="button" class="btn btn-danger m-1" data-bs-toggle="modal" data-bs-target="#confirmModal">
-                                <i class="bi bi-trash"></i>
-                            </button>
-                            -->
                 </td>
-
-                <!-- Modal Confirm Delete 
-                    <div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModal" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="confirmModal">
-                                        Deseja mesmo excluir esse produto?
-                                    </h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                    <button type="button" class="btn btn-primary" v-on:click="deleteProduct(product._id)" data-bs-dismiss="modal">
-                                        Sim
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>-->
             </tr>
         </tbody>
     </table>
@@ -77,7 +52,7 @@ export default {
                 this.products = response.data
             })
             .catch(error => {
-                alert(error)
+                console.log(error)
             })
     },
     methods: {
@@ -88,7 +63,7 @@ export default {
                     this.products = response.data
                 })
                 .catch(error => {
-                    alert(error)
+                    console.log(error)
                 })
         },
         deleteProduct: function (id) {

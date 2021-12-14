@@ -1,3 +1,4 @@
 const server = require("./server");
+const PORT = require("./server");
 
-server.listen(8000);
+server.listen(PORT);
