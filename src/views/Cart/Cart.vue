@@ -4,7 +4,7 @@
     <div class="container">
         <h2>This is Cart View</h2>
         <CartItems />
-        <a class="btn btn-success" v-if="allItems != 0" 
+        <a class="btn btn-success" v-if="allItems != 0" target="_blank"
         :href="`https://wa.me/5519993551857?text=${orderList}`">
             Fazer Pedido
         </a>
@@ -13,8 +13,8 @@
 </template>
 
 <script>
-import NavBar from '../components/NavBar'
-import CartItems from '../components/CartItems'
+import NavBar from '../../components/NavBar/NavBar'
+import CartItems from '../../components/CartItems/CartItems'
 import {
     mapGetters
 } from 'vuex'

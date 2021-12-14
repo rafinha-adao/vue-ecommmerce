@@ -13,21 +13,19 @@
 </template>
 
 <script>
-import API from '../services/API.js'
+import {
+    mapGetters
+} from 'vuex'
+
 export default {
-    data() {
-        return {
-            products: [],
-        };
+    computed: {
+        ...mapGetters([
+            'products',
+            'countProducts'
+        ])
     },
     mounted() {
-        API.get("/products")
-            .then(response => {
-                this.products = response.data;
-            })
-            .catch(error => {
-                console.log(error)
-            })
+        this.$store.dispatch("getProducts");
     }
 };
 </script>

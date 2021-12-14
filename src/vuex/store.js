@@ -1,21 +1,25 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import API from "../services/API";
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
     cart: [],
-    cartCount: 0,
+    products: [],
   },
   mutations: {
-    ADD_ITEM(state, cartModel) {
-      let x = state.cart.find((product) => product.id == cartModel.id);
+    GET_PRODUCTS(state, products) {
+      state.products = products;
+    },
+    DELETE_PRODUCT(state, id) {
+      API.delete('/products/delete/' + id);
+      let x = state.products.find((product) => product._id == id);
+      console.log(x)
       if (x) {
-        x.count++;
-      } else {
-        state.cart.unshift(cartModel);
-      }
+        state.products.splice(state.products.indexOf(x), 1);
+      } 
     },
     REMOVE_ITEM(state, product) {
       state.cart.splice(state.cart.indexOf(product), 1);
@@ -38,6 +42,18 @@ export default new Vuex.Store({
     },
   },
   actions: {
+    getProducts({ commit }) {
+      API.get("/products")
+        .then((response) => {
+          commit("GET_PRODUCTS", response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+    deleteProduct(store, id) {
+      store.commit("DELETE_PRODUCT", id);
+    },
     addItem(store, cartModel) {
       store.commit("ADD_ITEM", cartModel);
     },
@@ -52,6 +68,12 @@ export default new Vuex.Store({
     },
   },
   getters: {
+    products: (state) => {
+      return state.products;
+    },
+    countProducts: (state) => {
+      return state.products.length;
+    },
     allItems: (state) => {
       return state.cart;
     },
@@ -68,12 +90,20 @@ export default new Vuex.Store({
       return total;
     },
     orderList: (state) => {
-      let list = `Pedido E-commerce\n------------------------------------------\n\n`;
+      let list = "*Pedido E-commerce*\n\n";
 
       state.cart.forEach((product) => {
-        list += `${product.name} (${product.id}): ${product.count} x R$ ${
-          product.price
-        } = R$ ${product.count * product.price}\n`;
+        list +=
+          product.name +
+          " (" +
+          product.id +
+          "): " +
+          product.count +
+          " x R$ " +
+          product.price +
+          " = R$ " +
+          product.count * product.price +
+          "\n";
       });
 
       let total = 0;
@@ -82,7 +112,9 @@ export default new Vuex.Store({
         total += product.count * product.price;
       });
 
-      list += `\nValor Total: R$ ${total}`;
+      list += "\n\nValor Total: R$ " + total;
+
+      list = window.encodeURIComponent(list);
 
       console.log(list);
       return list;

@@ -23,8 +23,8 @@
 </template>
 
 <script>
-import API from '../services/API.js'
-import NavBar from '../components/NavBar'
+import API from '../../services/API.js'
+import NavBar from '../../components/NavBar/NavBar'
 import {
     mapGetters
 } from 'vuex'

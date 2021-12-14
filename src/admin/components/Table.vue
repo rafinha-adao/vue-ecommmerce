@@ -1,6 +1,6 @@
 <template>
 <div>
-    <h3>{{ quantityProducts }} produtos</h3>
+    <h3>{{ countProducts }} produtos</h3>
     <table class="table table-striped" style="text-align: center;">
         <thead class="table-dark">
             <tr>
@@ -32,49 +32,24 @@
 </template>
 
 <script>
-import API from '../services/API.js'
+import {
+    mapGetters
+} from 'vuex'
+
 export default {
-    data() {
-        return {
-            products: [],
-            quantityProducts: 0,
-            timer: ""
-        };
-    },
-    created() {
-        this.fetchData();
-        this.timer = setInterval(this.fetchData, 2800);
+    computed: {
+        ...mapGetters([
+            'products',
+            'countProducts'
+        ])
     },
     mounted() {
-        API.get("/products")
-            .then(response => {
-                this.quantityProducts = this.products.length
-                this.products = response.data
-            })
-            .catch(error => {
-                console.log(error)
-            })
+        this.$store.dispatch("getProducts");
     },
     methods: {
-        async fetchData() {
-            API.get("/products")
-                .then(response => {
-                    this.quantityProducts = this.products.length
-                    this.products = response.data
-                })
-                .catch(error => {
-                    console.log(error)
-                })
-        },
-        deleteProduct: function (id) {
-            API.delete('/products/delete/' + id);
-        },
-        cancelAutoUpdate() {
-            clearInterval(this.timer);
+        deleteProduct(id) {
+            this.$store.dispatch("deleteProduct", id);
         }
-    },
-    beforeDestroy() {
-        this.cancelAutoUpdate();
     }
 };
 </script>

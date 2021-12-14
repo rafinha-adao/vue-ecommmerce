@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import Table from '../components/Table.vue'
+import Table from '../components/Table'
 
 export default {
     name: 'Admin',
