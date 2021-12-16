@@ -1,12 +1,13 @@
 <template>
-<div class="cards container">
-    <div v-for="product in products" :key="product._id" class="card">
-        <img :src="product.img" class="card-img-top" :alt="product.name">
+<div class="cards-container">
+    <div class="card" v-for="product in products" :key="product._id">
+        <div class="img-container">
+            <img :src="product.img" class="" :alt="product.name">
+        </div>
         <div class="card-body">
-            <h5 class="card-title">{{product.name}}</h5>
-            <p class="card-text">R$ {{product.price}}</p>
-            <p class="card-text">{{product.amount}} disponíveis</p>
-            <router-link :to="`/details/${product._id}`" class="btn btn-primary">Comprar</router-link>
+            <h4 class="">{{product.name}}</h4>
+            <p class="">R$ {{product.price}}</p>
+            <router-link class="button-buy" :to="`/details/${product._id}`">Comprar</router-link>
         </div>
     </div>
 </div>
@@ -29,3 +30,5 @@ export default {
     }
 };
 </script>
+
+<style src="./CardProduct.css">

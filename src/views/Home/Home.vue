@@ -2,7 +2,6 @@
 <div class="home">
     <NavBar/>
     <div class="container">
-        <h2>This is Home View</h2>
         <CardProduct/>
     </div>
 </div>
@@ -20,3 +19,5 @@ export default {
     }
 }
 </script>
+
+<style src="./Home.css">

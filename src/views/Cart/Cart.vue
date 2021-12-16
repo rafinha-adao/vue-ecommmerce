@@ -2,10 +2,8 @@
 <div>
     <NavBar />
     <div class="container">
-        <h2>This is Cart View</h2>
         <CartItems />
-        <a class="btn btn-success" v-if="allItems != 0" target="_blank"
-        :href="`https://wa.me/5519993551857?text=${orderList}`">
+        <a class="btn btn-success" v-if="allItems != 0" target="_blank" :href="`https://wa.me/5519993551857?text=${orderList}`">
             Fazer Pedido
         </a>
     </div>

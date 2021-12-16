@@ -35,6 +35,11 @@ import {
 
 export default {
     name: "CartItems",
+    data() {
+        return {
+            products: []
+        }
+    },
     computed: {
         ...mapGetters([
             'allItems',

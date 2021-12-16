@@ -2,8 +2,7 @@
 <div class="details">
     <NavBar />
     <div class="container">
-        <h2>This is Details View</h2>
-        <div :key="cartModel._id" class="card">
+        <div :key="cartModel.id" class="card">
             <img :src="cartModel.img" class="card-img-top" :alt="cartModel.name">
             <div class="card-body">
                 <h5 class="card-title">{{cartModel.name}}</h5>
@@ -69,6 +68,9 @@ export default {
     methods: {
         addItemToCart(cartModel, id) {
             this.$store.dispatch('addItem', cartModel, id);
+
+            //const cartCache = JSON.stringify(cartModel);
+            //localStorage.setItem("Cart", cartCache);
         },
         increaseQty(max) {
             if (this.cartModel.count < max) {

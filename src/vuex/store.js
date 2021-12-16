@@ -1,25 +1,41 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import VuexPersist from 'vuex-persist'
 import API from "../services/API";
 
 Vue.use(Vuex);
 
+const vuexPersist = new VuexPersist({
+  key: 'cart',
+  storage: window.localStorage
+})
+
 export default new Vuex.Store({
+  plugins: [vuexPersist.plugin],
   state: {
     cart: [],
     products: [],
+    product: {}
   },
   mutations: {
     GET_PRODUCTS(state, products) {
       state.products = products;
     },
     DELETE_PRODUCT(state, id) {
-      API.delete('/products/delete/' + id);
+      API.delete("/products/delete/" + id);
       let x = state.products.find((product) => product._id == id);
-      console.log(x)
+      console.log(x);
       if (x) {
         state.products.splice(state.products.indexOf(x), 1);
-      } 
+      }
+    },
+    ADD_ITEM(state, cartModel) {
+      let x = state.cart.find((product) => product.id == cartModel.id);
+      if (x) {
+        x.count++;
+      } else {
+        state.cart.unshift(cartModel);
+      }
     },
     REMOVE_ITEM(state, product) {
       state.cart.splice(state.cart.indexOf(product), 1);
@@ -116,7 +132,6 @@ export default new Vuex.Store({
 
       list = window.encodeURIComponent(list);
 
-      console.log(list);
       return list;
     },
   },
