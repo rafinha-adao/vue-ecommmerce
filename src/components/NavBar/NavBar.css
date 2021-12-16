@@ -63,6 +63,30 @@ nav .container-nav .links {
           justify-content: center;
 }
 
+nav .container-nav .links .dropdown {
+  position: relative;
+}
+
+nav .container-nav .links .dropdown a {
+  margin: 0 1.2rem;
+}
+
+nav .container-nav .links .dropdown .dropdown-content {
+  display: none;
+  left: 0;
+  paddingtop: 4px;
+  position: absolute;
+  top: 100%;
+  background-color: #fff;
+  zindex: 9999;
+  height: 200px;
+  width: 200px;
+}
+
+nav .container-nav .links .dropdown:hover .dropdown-content {
+  display: block;
+}
+
 nav .container-nav .cart {
   width: 4rem;
   -webkit-box-pack: end;

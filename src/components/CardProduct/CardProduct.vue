@@ -5,7 +5,7 @@
             <img :src="product.img" class="" :alt="product.name">
         </div>
         <div class="card-body">
-            <h4 class="">{{product.name}}</h4>
+            <h5 class="">{{product.name}}</h5>
             <p class="">R$ {{product.price}}</p>
             <router-link class="button-buy" :to="`/details/${product._id}`">Comprar</router-link>
         </div>

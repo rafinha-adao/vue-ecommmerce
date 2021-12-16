@@ -3,7 +3,10 @@
     <NavBar />
     <div class="container">
         <CartItems />
-        <a class="btn btn-success" v-if="allItems != 0" target="_blank" :href="`https://wa.me/5519993551857?text=${orderList}`">
+        <a class="" v-if="allItems != 0" v-on:click="clearCart()">
+            Limpar Carrinho
+        </a>
+        <a class="" v-if="allItems != 0" target="_blank" :href="`https://wa.me/5519993551857?text=${orderList}`">
             Fazer Pedido
         </a>
     </div>
@@ -28,6 +31,11 @@ export default {
     components: {
         NavBar,
         CartItems
-    }
+    },
+    methods: {
+        clearCart() {
+            this.$store.dispatch('clearCart');
+        }
+    },
 }
 </script>

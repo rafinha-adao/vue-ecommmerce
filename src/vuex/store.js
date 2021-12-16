@@ -1,21 +1,22 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import VuexPersist from 'vuex-persist'
+import VuexPersist from "vuex-persist";
 import API from "../services/API";
 
 Vue.use(Vuex);
 
 const vuexPersist = new VuexPersist({
-  key: 'cart',
-  storage: window.localStorage
-})
+  key: "cart",
+  storage: window.localStorage,
+});
 
 export default new Vuex.Store({
   plugins: [vuexPersist.plugin],
+
   state: {
     cart: [],
     products: [],
-    product: {}
+    product: {},
   },
   mutations: {
     GET_PRODUCTS(state, products) {
@@ -39,6 +40,9 @@ export default new Vuex.Store({
     },
     REMOVE_ITEM(state, product) {
       state.cart.splice(state.cart.indexOf(product), 1);
+    },
+    CLEAR_CART(state) {
+      state.cart = [];
     },
     INCREASE_COUNT(state, cartModel) {
       let x = state.cart.find((product) => product.id == cartModel.id);
@@ -75,6 +79,9 @@ export default new Vuex.Store({
     },
     removeItem(store, product) {
       store.commit("REMOVE_ITEM", product);
+    },
+    clearCart(store) {
+      store.commit("CLEAR_CART");
     },
     increaseCount(store, product) {
       store.commit("INCREASE_COUNT", product);

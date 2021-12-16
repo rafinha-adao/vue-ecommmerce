@@ -31,6 +31,27 @@ nav
             width: 57rem
             justify-content: center
 
+            .dropdown
+                position: relative
+
+                a
+                    margin: 0 1.2rem
+                    
+                .dropdown-content
+                    display: none
+                    left: 0
+                    paddingtop: 4px
+                    position: absolute
+                    top: 100%
+                    background-color: #fff
+                    zindex: 9999
+                    height: 200px
+                    width: 200px
+
+                &:hover
+                    .dropdown-content
+                        display: block
+                    
         .cart
             width: 4rem
             justify-content: flex-end

@@ -2,19 +2,29 @@
 <div class="details">
     <NavBar />
     <div class="container">
-        <div :key="cartModel.id" class="card">
-            <img :src="cartModel.img" class="card-img-top" :alt="cartModel.name">
+        <div class="card" :key="cartModel.id">
+            <div class="img-container">
+                <img :src="cartModel.img" class="" :alt="cartModel.name">
+            </div>
             <div class="card-body">
-                <h5 class="card-title">{{cartModel.name}}</h5>
-                <p class="card-text">R$ {{cartModel.price}}</p>
-                <p class="card-text">{{cartModel.description}}</p>
-                <p class="card-text">{{cartModel.amount}} disponíveis</p>
+                <h4 class="">{{cartModel.name}}</h4>
+                <p class="">R$ {{cartModel.price}}</p>
+                <p class="">{{cartModel.description}}</p>
+                <p class="">{{cartModel.amount}} disponíveis</p>
                 <div class="">
-                    <button class="btn btn-primary" v-on:click="increaseQty(cartModel.amount)"><i class="bi bi-plus"></i></button>
-                    <input disabled="disabled" type="number" class="form-control" id="qtyProduct" aria-describedby="qtyProduct" :value="cartModel.count">
-                    <button class="btn btn-primary" v-on:click="decreaseQty()"><i class="bi bi-dash"></i></button>
+                    <button class="" v-on:click="increaseQty(cartModel.amount)">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+                            <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                        </svg>
+                    </button>
+                    <input disabled="disabled" type="number" class="" id="qtyProduct" :value="cartModel.count">
+                    <button class="" v-on:click="decreaseQty()">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dash" viewBox="0 0 16 16">
+                            <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z" />
+                        </svg>
+                    </button>
                 </div>
-                <button class="btn btn-primary" v-on:click="addItemToCart(cartModel, id = cartModel.id)">Adicionar ao Carrinho</button>
+                <a class="button-add-cart" v-on:click="addItemToCart(cartModel, id = cartModel.id)">Adicionar ao Carrinho</a>
             </div>
         </div>
     </div>
@@ -68,9 +78,6 @@ export default {
     methods: {
         addItemToCart(cartModel, id) {
             this.$store.dispatch('addItem', cartModel, id);
-
-            //const cartCache = JSON.stringify(cartModel);
-            //localStorage.setItem("Cart", cartCache);
         },
         increaseQty(max) {
             if (this.cartModel.count < max) {
@@ -85,3 +92,5 @@ export default {
     }
 }
 </script>
+
+<style src="./Details.css">

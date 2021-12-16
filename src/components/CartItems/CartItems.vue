@@ -11,17 +11,21 @@
     <div v-for="product in allItems" :key="product.name" class="card">
         <img :src="product.img" class="card-img-top" :alt="product.name">
         <div class="card-body">
-            <h5 class="card-title">{{product.name}}</h5>
-            <p class="card-text">R$ {{product.price}}</p>
-            <p class="card-text">{{product.description}}</p>
-            <p class="card-text">{{product.amount}} disponíveis</p>
+            <h5 class="">{{product.name}}</h5>
+            <p class="">R$ {{product.price}}</p>
+            <p class="">{{product.description}}</p>
+            <p class="">{{product.amount}} disponíveis</p>
             <div class="">
-                <button class="btn btn-primary" v-on:click="increaseCount(product)"><i class="bi bi-plus"></i></button>
-                <input type="number" disabled="disabled" class="form-control" id="qtyProduct" aria-describedby="qtyProduct" :value="product.count">
-                <button class="btn btn-primary" v-on:click="decreaseCount(product)"><i class="bi bi-dash"></i></button>
+                <button class="" v-on:click="increaseCount(product)">
+                    <!-- SVG -->
+                </button>
+                <input type="number" disabled="disabled" class="" id="qtyProduct" :value="product.count">
+                <button class="" v-on:click="decreaseCount(product)">
+                    <!-- SVG -->
+                </button>
             </div>
-            <button class="btn btn-danger" v-on:click="removeItemCart(product)">
-                <i class="bi bi-trash"></i>
+            <button class="" v-on:click="removeItemCart(product)">
+                <!-- SVG -->
             </button>
         </div>
     </div>

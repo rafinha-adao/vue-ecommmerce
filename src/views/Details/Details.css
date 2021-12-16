@@ -1,4 +1,4 @@
-.cards-container {
+.details .container {
   width: 65rem;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -17,7 +17,7 @@
           align-items: center;
 }
 
-.cards-container .card {
+.details .container .card {
   width: 15rem;
   height: 20rem;
   margin: 0.3rem;
@@ -40,32 +40,33 @@
   border: solid 0.15rem #EEEEEE;
 }
 
-.cards-container .card .img-container {
+.details .container .card .img-container {
   height: 9rem;
 }
 
-.cards-container .card .img-container img {
+.details .container .card .img-container img {
   width: 9rem;
   height: 9rem;
 }
 
-.cards-container .card .card-body {
+.details .container .card .card-body {
   height: 9rem;
   margin: 1rem 0 0 0;
 }
 
-.cards-container .card .card-body h5 {
+.details .container .card .card-body h4 {
   margin: 0 0 1rem 0;
 }
 
-.cards-container .card .card-body p {
+.details .container .card .card-body p {
   margin: 1rem 0;
 }
 
-.cards-container .card .card-body .button-buy {
+.details .container .card .card-body .button-add-cart {
   padding: 0.6rem 1rem;
   border-radius: 0.3rem;
   background-color: #FFBA6B;
   color: #FFFFFF;
+  cursor: pointer;
 }
-/*# sourceMappingURL=CardProduct.css.map */
+/*# sourceMappingURL=Details.css.map */
